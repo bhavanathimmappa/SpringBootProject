@@ -1,13 +1,24 @@
 package com.mindtree.skillspeed.hotelmanagement.entity;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="BookingHistory")
-
-
 public class BookingDatabase {
+	@OneToOne(cascade = CascadeType.ALL, optional =false, fetch = FetchType.EAGER, orphanRemoval =true)
+	@PrimaryKeyJoinColumn
 	CityEntity city_name;
+	@OneToOne(cascade = CascadeType.ALL, optional =false, fetch = FetchType.EAGER, orphanRemoval =true)
+	@PrimaryKeyJoinColumn
 	HotelEntity hotel_name;
 	Integer no_rooms;
 	String Checkin_date;
@@ -15,16 +26,15 @@ public class BookingDatabase {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	Integer id;
-	@OneToOne	   
-	@JoinColumn(name="CityEntity_id")
+	
+ 
 	public CityEntity getCity_name() {
 		return city_name;
 	}
 	public void setCity_name(CityEntity city_name) {
 		this.city_name = city_name;
 	}
-	@OneToOne	   
-	@JoinColumn(name="HotelEntity_Hotel_id")
+	
 	public HotelEntity getHotel_name() {
 		return hotel_name;
 	}

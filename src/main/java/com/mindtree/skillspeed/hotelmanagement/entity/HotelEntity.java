@@ -3,7 +3,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="HotelEntity")
@@ -13,18 +12,7 @@ public class HotelEntity {
 	Integer Hotel_id;
 	String hotel_name;
 	Double Hotel_price;
-	Integer room_avail;
-	
-	
-	@OneToMany
-	
-	public CityEntity getCityentity() {
-		return cityentity;
-	}
-	public void setCityentity(CityEntity cityentity) {
-		this.cityentity = cityentity;
-	}
-	CityEntity cityentity;	
+	Integer room_avail;	
 	public Integer getHotel_id() {
 		return Hotel_id;
 	}
@@ -90,6 +78,7 @@ public class HotelEntity {
 			return false;
 		return true;
 	}
+
 	
 
 }
