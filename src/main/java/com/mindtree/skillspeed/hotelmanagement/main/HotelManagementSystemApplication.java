@@ -34,19 +34,24 @@ public class HotelManagementSystemApplication {
 		return (args) -> {
 			
 
-			HotelEntity en= new HotelEntity();
+			HotelEntity  en= new HotelEntity();
 			en.setHotel_name("MTHotel4");
 			en.setHotel_price(10.00);
 			en.setRoom_avail(15);
-			dao.save(en);
 			CityEntity en1= new CityEntity();
 			en1.setCityName("Bengaluru");
 			ArrayList<HotelEntity> list12=new ArrayList<HotelEntity>();
 			list12.add(en);
+<<<<<<< HEAD
 			
+=======
+			cityentity.save(en1);
+			en.setCityentity(en1);
+			dao.save(en);
+>>>>>>> b7059bd62a0230b737d489d60965422e8132f67a
 			en1.setHotelentity(list12);
 			
-			cityentity.save(en1);
+			
 			
 		};
 	}

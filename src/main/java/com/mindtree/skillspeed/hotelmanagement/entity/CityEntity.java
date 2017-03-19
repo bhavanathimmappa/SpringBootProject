@@ -1,5 +1,5 @@
 package com.mindtree.skillspeed.hotelmanagement.entity;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,7 +15,8 @@ public class CityEntity {
 @GeneratedValue(strategy=GenerationType.IDENTITY)
 	Integer cityentityid;
 String CityName;
-ArrayList<HotelEntity>hotelentity;
+@OneToMany(targetEntity=HotelEntity.class,mappedBy="cityentity", fetch=FetchType.EAGER)
+List<HotelEntity> hotelentity;
 public Integer getId() {
 	return cityentityid;
 }
@@ -28,53 +29,24 @@ public String getCityName() {
 public void setCityName(String cityName) {
 	CityName = cityName;
 }
-//@OneToMany(mappedBy = "city_entity", cascade = CascadeType.ALL)
-@OneToMany(targetEntity=HotelEntity.class,mappedBy="city_entity",fetch=FetchType.EAGER)
 
-public ArrayList<HotelEntity> getHotelentity() {
+
+
+public List<HotelEntity> getHotelentity() {
 	return hotelentity;
 }
-public void setHotelentity(ArrayList<HotelEntity> hotelentity) {
+public void setHotelentity(List<HotelEntity> hotelentity) {
 	this.hotelentity = hotelentity;
 }
-@Override
-public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result + ((CityName == null) ? 0 : CityName.hashCode());
-	result = prime * result + ((hotelentity == null) ? 0 : hotelentity.hashCode());
-	result = prime * result + ((cityentityid == null) ? 0 : cityentityid.hashCode());
-	return result;
+public CityEntity(Integer cityentityid, String cityName, List<HotelEntity> hotelentity) {
+	super();
+	this.cityentityid = cityentityid;
+	CityName = cityName;
+	this.hotelentity = hotelentity;
 }
-@Override
-public boolean equals(Object obj) {
-	if (this == obj)
-		return true;
-	if (obj == null)
-		return false;
-	if (getClass() != obj.getClass())
-		return false;
-	CityEntity other = (CityEntity) obj;
-	if (CityName == null) {
-		if (other.CityName != null)
-			return false;
-	} else if (!CityName.equals(other.CityName))
-		return false;
-	if (hotelentity == null) {
-		if (other.hotelentity != null)
-			return false;
-	} else if (!hotelentity.equals(other.hotelentity))
-		return false;
-	if (cityentityid == null) {
-		if (other.cityentityid != null)
-			return false;
-	} else if (!cityentityid.equals(other.cityentityid))
-		return false;
-	return true;
-}
-@Override
-public String toString() {
-	return "CityEntity [id=" + cityentityid + ", CityName=" + CityName + ", hotelentity=" + hotelentity + "]";
+public CityEntity() {
+	super();
+	// TODO Auto-generated constructor stub
 }
 
 
