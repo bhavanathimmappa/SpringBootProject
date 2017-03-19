@@ -30,7 +30,7 @@ cityentity;
 		en1.setCityName("Bengaluru");
 		ArrayList<HotelEntity> list12=new ArrayList<HotelEntity>();
 		list12.add(en);
-		en1.setHotelentity(list12);
+	//	en1.setHotelentity(list12);
 		
 		cityentity.save(en1);
 	}
