@@ -54,9 +54,10 @@
 		<div class="col-md-12">
 			<div class="form-group">
   	<label for="sel1">City:</label>
-  	<select th:field="*{Cities}">
-  	<option th:each="Cities : ${Citiess}" th:value="${Cities}" th:text="${Cities.CityName}"/> 
-  	</select>
+  	<select class="form-control"  id="dropOperator">
+    <option value="0">Select City</option>
+    <option th:each="city : ${Cities}" th:value="${city.id}" th:text="${city.CityName}"></option>
+    </select>
   		</div>
 		</div>
 		</div>
@@ -64,8 +65,10 @@
 		<div class="col-md-12">
 <div class="form-group">
   <label for="sel1">Hotel:</label>
-  <select class="form-control" id="sel1">
-    <option></option>
+  <select class="form-control" id="dropOperator1">
+   <option value="0">Select Hotel</option>
+    <option th:each="hotel : ${Hotels}" th:value="${hotel.Hotel_id}" th:text="${hotel.hotel_name}"></option>
+   
     
   </select>
 </div>

@@ -1,6 +1,7 @@
 package com.mindtree.skillspeed.hotelmanagement.main;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -26,6 +27,16 @@ import com.mindtree.skillspeed.hotelmanagement.entity.HotelEntity;
 public class HotelManagementSystemApplication {
 
 	public static void main(String[] args) {
+		List<Integer> integerList=new ArrayList<Integer>();
+		integerList.add(1);
+		integerList.add(2);
+		for(Integer i:integerList){
+			System.out.println(i);
+		
+		}
+		for(int i=0;i<integerList.size();i++){
+			System.out.println(integerList.get(i));
+		}
 		SpringApplication.run(HotelManagementSystemApplication.class, args);
 	}
 	@Bean 
@@ -42,13 +53,9 @@ public class HotelManagementSystemApplication {
 			en1.setCityName("Bengaluru");
 			ArrayList<HotelEntity> list12=new ArrayList<HotelEntity>();
 			list12.add(en);
-<<<<<<< HEAD
-			
-=======
 			cityentity.save(en1);
 			en.setCityentity(en1);
 			dao.save(en);
->>>>>>> b7059bd62a0230b737d489d60965422e8132f67a
 			en1.setHotelentity(list12);
 			
 			
