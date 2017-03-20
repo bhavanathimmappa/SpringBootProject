@@ -58,6 +58,30 @@
     <option value="0">Select City</option>
     <option th:each="city : ${Cities}" th:value="${city.id}" th:text="${city.CityName}"></option>
     </select>
+    <script>
+    $('#dropOperator').click(function(){
+    	var id = $('#dropOperator').val();
+    	if (id==0){
+    		console.log("Hi Select hotel");
+    	}else {
+    		$(document).ready(function(){
+				var data={};
+				data["id"]=id;
+				$.ajax({
+				    type: 'POST', 
+				    url: "/hoteloption",
+				   contentType:'application/json',
+				    data:JSON.stringify(data),
+				    success(data1){
+				    	console.log(data1);
+				    	
+				    }
+				 });
+    		});
+    	}
+    
+    });
+    </script>
   		</div>
 		</div>
 		</div>
@@ -67,7 +91,7 @@
   <label for="sel1">Hotel:</label>
   <select class="form-control" id="dropOperator1">
    <option value="0">Select Hotel</option>
-    <option th:each="hotel : ${Hotels}" th:value="${hotel.Hotel_id}" th:text="${hotel.hotel_name}"></option>
+    <!-- <option th:each="hotel : ${Hotels}" th:value="${hotel.Hotel_id}" th:text="${hotel.hotel_name}"></option> -->
    
     
   </select>

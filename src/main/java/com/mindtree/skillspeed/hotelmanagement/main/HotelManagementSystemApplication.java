@@ -19,47 +19,45 @@ import com.mindtree.skillspeed.hotelmanagement.dao.HotelEntityDAO;
 import com.mindtree.skillspeed.hotelmanagement.entity.CityEntity;
 import com.mindtree.skillspeed.hotelmanagement.entity.HotelEntity;
 
-@SpringBootApplication(scanBasePackages={"com.mindtree.skillspeed.hotelmanagement"})
+@SpringBootApplication(scanBasePackages = { "com.mindtree.skillspeed.hotelmanagement" })
 @AutoConfigureDataJpa
 @EnableAutoConfiguration
-@EnableJpaRepositories(basePackages={"com.mindtree.skillspeed.hotelmanagement.dao"})
-@EntityScan(basePackages={"com.mindtree.skillspeed.hotelmanagement.entity"})
+@EnableJpaRepositories(basePackages = { "com.mindtree.skillspeed.hotelmanagement.dao" })
+@EntityScan(basePackages = { "com.mindtree.skillspeed.hotelmanagement.entity" })
 public class HotelManagementSystemApplication {
 
 	public static void main(String[] args) {
-		List<Integer> integerList=new ArrayList<Integer>();
+		List<Integer> integerList = new ArrayList<Integer>();
 		integerList.add(1);
 		integerList.add(2);
-		for(Integer i:integerList){
+		for (Integer i : integerList) {
 			System.out.println(i);
-		
+
 		}
-		for(int i=0;i<integerList.size();i++){
+		for (int i = 0; i < integerList.size(); i++) {
 			System.out.println(integerList.get(i));
 		}
 		SpringApplication.run(HotelManagementSystemApplication.class, args);
 	}
-	@Bean 
-	@Order(Ordered.HIGHEST_PRECEDENCE)
-	public CommandLineRunner clr(HotelEntityDAO dao,	CityEntityDAO cityentity){
-		return (args) -> {
-			
 
-			HotelEntity  en= new HotelEntity();
+	@Bean
+	@Order(Ordered.HIGHEST_PRECEDENCE)
+	public CommandLineRunner clr(HotelEntityDAO dao, CityEntityDAO cityentity) {
+		return (args) -> {
+
+			HotelEntity en = new HotelEntity();
 			en.setHotel_name("MTHotel4");
 			en.setHotel_price(10.00);
 			en.setRoom_avail(15);
-			CityEntity en1= new CityEntity();
+			CityEntity en1 = new CityEntity();
 			en1.setCityName("Bengaluru");
-			ArrayList<HotelEntity> list12=new ArrayList<HotelEntity>();
+			ArrayList<HotelEntity> list12 = new ArrayList<HotelEntity>();
 			list12.add(en);
 			cityentity.save(en1);
 			en.setCityentity(en1);
 			dao.save(en);
 			en1.setHotelentity(list12);
-			
-			
-			
+
 		};
 	}
 }
