@@ -68,14 +68,15 @@
 				var data={};
 				data["id"]=id;
 				$.ajax({
-				    type: 'POST', 
+				    type: 'GET', 
 				    url: "/hoteloption",
 				   contentType:'application/json',
-				    data:JSON.stringify(data),
+				    data:data,
 				    success(data1){
-				    	console.log(data1);
-				    	
-				    }
+data1=JSON.parse(data1);
+console.log(data1.hotel_name);
+$('#dropOperator1').append('<option value='+data1.hotel_id +'>'+data1.hotel_name+'</option>');
+	    }
 				 });
     		});
     	}

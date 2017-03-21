@@ -1,10 +1,20 @@
 package com.mindtree.skillspeed.hotelmanagement.controller;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mindtree.skillspeed.hotelmanagement.dao.CityEntityDAO;
 import com.mindtree.skillspeed.hotelmanagement.dao.HotelEntityDAO;
 import com.mindtree.skillspeed.hotelmanagement.entity.CityEntity;
@@ -17,21 +27,27 @@ public class Hotelcontroller {
 	HotelEntityDAO dao;
 	@Autowired
 	CityEntityDAO
-cityentity;
+cities;
 	
-	
-	public void performAction(){
-		HotelEntity en= new HotelEntity();
-		CityEntity en1= new CityEntity();
-		en.setHotel_name("MTHotel4");
-		en.setHotel_price(10.00);
-		en.setRoom_avail(15);
-		dao.save(en);
-		en1.setCityName("Bengaluru");
-		ArrayList<HotelEntity> list12=new ArrayList<HotelEntity>();
-		list12.add(en);
-	//	en1.setHotelentity(list12);
+	@RequestMapping(value="/hoteloption",method = RequestMethod.GET)
+	@ResponseBody
+	public String getHotels(@RequestParam("id") String id, Model m) throws JsonProcessingException{
+		String HotelEntitys="";
+		CityEntity entity=cities.findOne(Integer.parseInt(id));
+		List<HotelEntity> list=entity.getHotelentity();
+		ObjectMapper mapper = new ObjectMapper();
+	//	HotelEntitys+="Abc";
+		for(HotelEntity en:list) {
+			en.setCityentity(null);
+		HotelEntitys+=	mapper.writeValueAsString(en);
+	//	HotelEntitys+=",";
+		}
+	//	HotelEntitys+="]";
+		System.out.println(HotelEntitys);
 		
-		cityentity.save(en1);
+		return HotelEntitys;
 	}
+
+	
+	
 }

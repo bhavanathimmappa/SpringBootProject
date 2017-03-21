@@ -48,6 +48,10 @@ public CityEntity() {
 	super();
 	// TODO Auto-generated constructor stub
 }
+//@Override
+//public String toString() {
+//	return "CityEntity [cityentityid=" + cityentityid + ", CityName=" + CityName + ", hotelentity=" + hotelentity + "]";
+//}
 
 
 }
