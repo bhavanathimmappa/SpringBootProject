@@ -36,13 +36,14 @@ cities;
 		CityEntity entity=cities.findOne(Integer.parseInt(id));
 		List<HotelEntity> list=entity.getHotelentity();
 		ObjectMapper mapper = new ObjectMapper();
-	//	HotelEntitys+="Abc";
+	HotelEntitys+="[";
 		for(HotelEntity en:list) {
 			en.setCityentity(null);
 		HotelEntitys+=	mapper.writeValueAsString(en);
-	//	HotelEntitys+=",";
+		HotelEntitys+=",";
 		}
-	//	HotelEntitys+="]";
+		HotelEntitys=HotelEntitys.substring(0, HotelEntitys.length()-1);
+		HotelEntitys+="]";
 		System.out.println(HotelEntitys);
 		
 		return HotelEntitys;

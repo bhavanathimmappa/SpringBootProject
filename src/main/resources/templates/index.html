@@ -74,13 +74,22 @@
 				    data:data,
 				    success(data1){
 data1=JSON.parse(data1);
-console.log(data1.hotel_name);
-$('#dropOperator1').append('<option value='+data1.hotel_id +'>'+data1.hotel_name+'</option>');
+//<![CDATA[
+for(var i=0;i<data1.length;i++){
+	console.log(data1.hotel_name);	
+	$('#dropOperator1')
+	    .find('option')
+	    .remove()
+	    .end()
+	    .append('<option value='+data1[i].hotel_id+'>'+data1[i].hotel_name+'</option>')
+	; 
+	
+}
+//]]>
 	    }
 				 });
     		});
-    	}
-    
+    	}    
     });
     </script>
   		</div>
@@ -122,14 +131,36 @@ $('#dropOperator1').append('<option value='+data1.hotel_id +'>'+data1.hotel_name
 	</div>
 	<div class="row">
 		<div class="col-md-6">
-			 
-			<button type="button" class="btn btn-default">
+			 <form action="/booknow" method="post" id="submitbooking1">
+			 <input type="hidden" id="city" value="" name="city"/> 
+			 <input type="hidden" id="hotel" value="" name="hotel"/>
+			 <input type="hidden" id="check_in" value="" name="check_in"/>
+			 <input type="hidden" id="check_out" value="" name="check_out"/>
+			 <input type="hidden" id="rooms" value=""  name="rooms"/>
+			 <input type="button"  style="position: absolute; left: -9999px" id="submitbooking"/>
+			 </form>
+			<button type="button" class="btn btn-default" id="book" onclick="submitFunction()">
 				Book
 			</button>
 		</div>
+		<script>
+		function submitFunction(){
+			var city=$( "#dropOperator option:selected" ).text();
+			$('#city').val(city);
+			var Hotel =$( "#dropOperator1 option:selected" ).text();
+			$('#hotel').val(Hotel);
+			var checkIn =$("#datepicker").val();
+			$('#check_in').val(checkIn);
+			var checkOut =$("#datepicker1").val();
+			$('#check_out').val(checkOut);
+			var rooms =$('#sel3').val()
+			$('#rooms').val(rooms);
+			$('#submitbooking1')[0].submit();		
+		}
+		</script>
 		<div class="col-md-6">
 			 
-			<button type="button" class="btn btn-default">
+			<button type="button" class="btn btn-default" id="cancel">
 				Cancel
 			</button>
 		</div>
