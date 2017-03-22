@@ -37,17 +37,7 @@
 			<h3>
 				Hotel Management System
 			</h3>
-			<ul class="breadcrumb">
-				<li>
-					<a href="#">Home</a> <span class="divider">/</span>
-				</li>
-				<li>
-					<a href="#">Library</a> <span class="divider">/</span>
-				</li>
-				<li class="active">
-					Data
-				</li>
-			</ul>
+		<div id="errorDiv"></div>
 		</div>
 	</div>
 	<div class="row">
@@ -55,7 +45,7 @@
 			<div class="form-group">
   	<label for="sel1">City:</label>
   	<select class="form-control"  id="dropOperator">
-    <option value="0">Select City</option>
+    <option value="0"></option>
     <option th:each="city : ${Cities}" th:value="${city.id}" th:text="${city.CityName}"></option>
     </select>
     <script>
@@ -72,21 +62,24 @@
 				    url: "/hoteloption",
 				   contentType:'application/json',
 				    data:data,
+				  //<![CDATA[
 				    success(data1){
+				    	
 data1=JSON.parse(data1);
-//<![CDATA[
+console.log(data1);
+$('#dropOperator1')
+    .find('option').remove();
 for(var i=0;i<data1.length;i++){
 	console.log(data1.hotel_name);	
 	$('#dropOperator1')
 	    .find('option')
-	    .remove()
 	    .end()
 	    .append('<option value='+data1[i].hotel_id+'>'+data1[i].hotel_name+'</option>')
 	; 
 	
 }
 //]]>
-	    }
+}
 				 });
     		});
     	}    
@@ -100,12 +93,14 @@ for(var i=0;i<data1.length;i++){
 <div class="form-group">
   <label for="sel1">Hotel:</label>
   <select class="form-control" id="dropOperator1">
-   <option value="0">Select Hotel</option>
+   <option value="0"></option>
     <!-- <option th:each="hotel : ${Hotels}" th:value="${hotel.Hotel_id}" th:text="${hotel.hotel_name}"></option> -->
    
     
   </select>
 </div>
+<!-- <label id="hotelPrice">Hotel Price:</label>
+<div id="HotelPrice1"></div> -->
 		</div>
 	</div>
 	<div class="row">
@@ -131,12 +126,14 @@ for(var i=0;i<data1.length;i++){
 	</div>
 	<div class="row">
 		<div class="col-md-6">
-			 <form action="/booknow" method="post" id="submitbooking1">
-			 <input type="hidden" id="city" value="" name="city"/> 
-			 <input type="hidden" id="hotel" value="" name="hotel"/>
-			 <input type="hidden" id="check_in" value="" name="check_in"/>
-			 <input type="hidden" id="check_out" value="" name="check_out"/>
-			 <input type="hidden" id="rooms" value=""  name="rooms"/>
+			 <form  action="#" th:action="@{/}" th:object="${personForm}" method="post" id="submitbooking1">
+
+			 <input type="hidden" id="city" value="" th:field="*{cityName}"/> 
+<div th:if="${#fields.hasErrors('cityName')}" th:errors="*{cityName}">Name Error</div>
+			 <input type="hidden" id="hotel" value="" th:field="*{hotelName}"/>
+			 <input type="hidden" id="check_in" value="" th:field="*{checkIn}"/>
+			 <input type="hidden" id="check_out" value="" th:field="*{checkOut}"/>
+			 <input type="hidden" id="rooms" value=""  th:field="*{rooms}"/>
 			 <input type="button"  style="position: absolute; left: -9999px" id="submitbooking"/>
 			 </form>
 			<button type="button" class="btn btn-default" id="book" onclick="submitFunction()">
@@ -145,7 +142,14 @@ for(var i=0;i<data1.length;i++){
 		</div>
 		<script>
 		function submitFunction(){
+			//<![CDATA[
 			var city=$( "#dropOperator option:selected" ).text();
+			if(city==''){
+				if($('#cityError').length==0){
+					$('#errorDiv').append('<div class=\"alert alert-danger\" id=\"cityError\">City Is Empty</div>');
+					
+					}
+			}
 			$('#city').val(city);
 			var Hotel =$( "#dropOperator1 option:selected" ).text();
 			$('#hotel').val(Hotel);
@@ -155,7 +159,31 @@ for(var i=0;i<data1.length;i++){
 			$('#check_out').val(checkOut);
 			var rooms =$('#sel3').val()
 			$('#rooms').val(rooms);
-			$('#submitbooking1')[0].submit();		
+			
+			var checkin = Date.parse($('#datepicker').val());
+			var checkout = Date.parse($('#datepicker1').val());
+			
+			if (checkin>checkout)
+			{
+				if($('#dateError').length==0){
+				$('#datepicker').val('');
+				$('#datepicker1').val('');
+				
+				$('#errorDiv').append('<div class=\"alert alert-danger\" id=\"dateError\">CheckIn Must be Less than or Equal to CheckOut</div>');
+				
+				}
+				
+			}else if(checkin<checkout){
+				
+				$('#submitbooking1')[0].submit();	
+			}else if(checkIn==''||checkOut==''){
+				if($('#dateEmpty').length==0){
+					
+					$('#errorDiv').append('<div class=\"alert alert-danger\" id=\"dateEmpty\">Dates are Empty</div>');
+			}
+			//]]>
+			
+		}
 		}
 		</script>
 		<div class="col-md-6">

@@ -10,16 +10,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name="BookingHistory")
 public class BookingDatabase {
 	@OneToOne(cascade = CascadeType.ALL, optional =false, fetch = FetchType.EAGER, orphanRemoval =true)
 	@PrimaryKeyJoinColumn
+	
 	CityEntity city_name;
 	@OneToOne(cascade = CascadeType.ALL, optional =false, fetch = FetchType.EAGER, orphanRemoval =true)
 	@PrimaryKeyJoinColumn
+	
 	HotelEntity hotel_name;
+	
 	Integer no_rooms;
 	String Checkin_date;
 	String Checkout_date;
@@ -66,59 +72,8 @@ public class BookingDatabase {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((Checkin_date == null) ? 0 : Checkin_date.hashCode());
-		result = prime * result + ((Checkout_date == null) ? 0 : Checkout_date.hashCode());
-		result = prime * result + ((city_name == null) ? 0 : city_name.hashCode());
-		result = prime * result + ((hotel_name == null) ? 0 : hotel_name.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((no_rooms == null) ? 0 : no_rooms.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		BookingDatabase other = (BookingDatabase) obj;
-		if (Checkin_date == null) {
-			if (other.Checkin_date != null)
-				return false;
-		} else if (!Checkin_date.equals(other.Checkin_date))
-			return false;
-		if (Checkout_date == null) {
-			if (other.Checkout_date != null)
-				return false;
-		} else if (!Checkout_date.equals(other.Checkout_date))
-			return false;
-		if (city_name == null) {
-			if (other.city_name != null)
-				return false;
-		} else if (!city_name.equals(other.city_name))
-			return false;
-		if (hotel_name == null) {
-			if (other.hotel_name != null)
-				return false;
-		} else if (!hotel_name.equals(other.hotel_name))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (no_rooms == null) {
-			if (other.no_rooms != null)
-				return false;
-		} else if (!no_rooms.equals(other.no_rooms))
-			return false;
-		return true;
-	}
+	
+	
 	
 	
 	
