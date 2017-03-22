@@ -1,0 +1,131 @@
+<html lang="en">
+  <head>
+    <title>Bootstrap 3, from LayoutIt!</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"/>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"/>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
+    <script>
+  $( function() {
+    $( "#datepicker1" ).datepicker();
+  } );
+  </script>
+    
+  
+  
+  
+  
+  
+  
+  
+  </head>
+  <body>
+
+    <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			
+			
+			
+			
+			
+			<h3>Hotel Management System</h3>
+			
+			
+			
+			<ul class="breadcrumb">
+			
+			
+				<li><a href="#">Home</a> <span class="divider"></span></li>
+				<li>
+					<a href="#">Library</a> <span class="divider"></span>
+				</li>
+				<li class="active">
+					Data
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			
+			<div class="form-group">
+  <label for="sel1">City:</label>
+  <select class="form-control" id="sel2" th:each="Cities : ${city}">
+    <option th:text="${city.CityName}"></option>
+  </select>
+</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+<div class="form-group">
+  <label for="sel1">Hotel:</label>
+  <select class="form-control" id="sel1">
+    <option></option>
+    
+  </select>
+</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+		<p>Check-in Date: <input type="text" id="datepicker"></p>
+		</div>
+		<div class="col-md-6">
+		<p>Check-out Date: <input type="text" id="datepicker1"></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+		<div class="form-group">
+  <label for="sel1">NO OF ROOMS:</label>
+  <select class="form-control" id="sel3">
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+  </select>
+</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			 
+			<button type="button" class="btn btn-default">
+				Book
+			</button>
+		</div>
+		<div class="col-md-6">
+			 
+			<button type="button" class="btn btn-default">
+				Cancel
+			</button>
+		</div>
+	</div>
+</div>
+
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+
+  </body>
+</html>

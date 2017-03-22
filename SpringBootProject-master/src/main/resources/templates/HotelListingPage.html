@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Bootstrap 3, from LayoutIt!</title>
+
+    <meta name="description" content="Source code generated using layoutit.com"/>
+    <meta name="author" content="LayoutIt!"/>
+  </head>
+  <body>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							#
+						</th>
+						<th>
+							Hotel Name
+						</th>
+						<th>
+							Price
+						</th>
+						<th>
+							Book Now
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+						<tr th:each="hotel : ${HotelListing}">
+<td th:text="${hotel.Hotel_id}"></td>
+<td th:text="${hotel.hotel_name}"></td>
+<td th:text="${hotel.Hotel_price}"></td> 
+<td><a th:href="@{'/bookit/'+${cityName}+'/'+${hotel.hotel_name}+'/'+${checkin}+'/'+${checkout}+'/'+${rooms}}">Book Now</a></td>
+</tr>
+
+					</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+  </body>
+</html>
