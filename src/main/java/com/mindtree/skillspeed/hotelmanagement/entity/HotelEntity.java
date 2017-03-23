@@ -74,10 +74,4 @@ public class HotelEntity  {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	@Override
-	public String toString() {
-		return "Hotel_id=" + Hotel_id + ", hotel_name=" + hotel_name + ", Hotel_price=" + Hotel_price
-				+ ", room_avail=" + room_avail + ", cityentity=" + cityentity ;
-	}
-		
 }

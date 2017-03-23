@@ -21,9 +21,8 @@ public class BookingDatabase {
 	@PrimaryKeyJoinColumn
 	
 	CityEntity city_name;
-	@OneToOne(cascade = CascadeType.ALL, optional =false, fetch = FetchType.EAGER, orphanRemoval =true)
+	@OneToOne(cascade = {CascadeType.ALL,CascadeType.MERGE}, optional =false, fetch = FetchType.EAGER, orphanRemoval =true)
 	@PrimaryKeyJoinColumn
-	
 	HotelEntity hotel_name;
 	
 	Integer no_rooms;
@@ -71,6 +70,20 @@ public class BookingDatabase {
 	}
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	public BookingDatabase(CityEntity city_name, HotelEntity hotel_name, Integer no_rooms, String checkin_date,
+			String checkout_date, Integer id) {
+		super();
+		this.city_name = city_name;
+		this.hotel_name = hotel_name;
+		this.no_rooms = no_rooms;
+		Checkin_date = checkin_date;
+		Checkout_date = checkout_date;
+		this.id = id;
+	}
+	public BookingDatabase() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 	
 	

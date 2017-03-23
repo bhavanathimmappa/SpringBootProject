@@ -48,59 +48,14 @@
     <option value="0"></option>
     <option th:each="city : ${Cities}" th:value="${city.id}" th:text="${city.CityName}"></option>
     </select>
-    <script>
-    $('#dropOperator').click(function(){
-    	var id = $('#dropOperator').val();
-    	if (id==0){
-    		console.log("Hi Select hotel");
-    	}else {
-    		$(document).ready(function(){
-				var data={};
-				data["id"]=id;
-				$.ajax({
-				    type: 'GET', 
-				    url: "/hoteloption",
-				   contentType:'application/json',
-				    data:data,
-				  //<![CDATA[
-				    success(data1){
-				    	
-data1=JSON.parse(data1);
-console.log(data1);
-$('#dropOperator1')
-    .find('option').remove();
-for(var i=0;i<data1.length;i++){
-	console.log(data1.hotel_name);	
-	$('#dropOperator1')
-	    .find('option')
-	    .end()
-	    .append('<option value='+data1[i].hotel_id+'>'+data1[i].hotel_name+'</option>')
-	; 
-	
-}
-//]]>
-}
-				 });
-    		});
-    	}    
-    });
-    </script>
   		</div>
 		</div>
 		</div>
 	<div class="row">
 		<div class="col-md-12">
 <div class="form-group">
-  <label for="sel1">Hotel:</label>
-  <select class="form-control" id="dropOperator1">
-   <option value="0"></option>
-    <!-- <option th:each="hotel : ${Hotels}" th:value="${hotel.Hotel_id}" th:text="${hotel.hotel_name}"></option> -->
-   
-    
-  </select>
+  
 </div>
-<!-- <label id="hotelPrice">Hotel Price:</label>
-<div id="HotelPrice1"></div> -->
 		</div>
 	</div>
 	<div class="row">
@@ -126,10 +81,10 @@ for(var i=0;i<data1.length;i++){
 	</div>
 	<div class="row">
 		<div class="col-md-6">
-			 <form  action="#" th:action="@{/}" th:object="${personForm}" method="post" id="submitbooking1">
+			 <form  action="#" th:action="@{/homepage}" th:object="${personForm}" method="post" id="submitbooking1">
 
 			 <input type="hidden" id="city" value="" th:field="*{cityName}"/> 
-<div th:if="${#fields.hasErrors('cityName')}" th:errors="*{cityName}">Name Error</div>
+			 <div th:if="${#fields.hasErrors('cityName')}" th:errors="*{cityName}">Name Error</div>
 			 <input type="hidden" id="hotel" value="" th:field="*{hotelName}"/>
 			 <input type="hidden" id="check_in" value="" th:field="*{checkIn}"/>
 			 <input type="hidden" id="check_out" value="" th:field="*{checkOut}"/>
@@ -151,7 +106,7 @@ for(var i=0;i<data1.length;i++){
 					}
 			}
 			$('#city').val(city);
-			var Hotel =$( "#dropOperator1 option:selected" ).text();
+			var Hotel ="ABC";
 			$('#hotel').val(Hotel);
 			var checkIn =$("#datepicker").val();
 			$('#check_in').val(checkIn);
@@ -187,10 +142,17 @@ for(var i=0;i<data1.length;i++){
 		}
 		</script>
 		<div class="col-md-6">
+			<form th:action="@{/}" id="actionPerform" method="post" >
+			</form>
 			 
-			<button type="button" class="btn btn-default" id="cancel">
+			<button type="button" class="btn btn-default" id="cancel" onclick="HomePage()">
 				Cancel
 			</button>
+			<script>
+			function HomePage(){
+			$('#actionPerform')[0].submit();
+			}
+			</script>
 		</div>
 	</div>
 </div>
