@@ -1,3 +1,4 @@
+ CREATE DATABASE IF NOT EXISTS mydb;
  insert into city_entity values(1,'Bengaluru');
   insert into city_entity values(2,'Delhi');
    insert into city_entity values(3,'Mumbai');
